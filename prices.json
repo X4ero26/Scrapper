@@ -243,12 +243,13 @@
   },
   "_health": {
     "Falabella": 0,
-    "Ripley": 0,
-    "Paris": 0,
+    "Ripley": 1,
+    "Paris": 1,
     "MacOnline": 0,
     "Lider": 1,
     "PCFactory": 1,
-    "SPDigital": 1
+    "SPDigital": 1,
+    "MercadoLibre": 0
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/17776877/iphone-18-pro-max-256gb-burgundy/17776875": {
     "model": "iPhone 18 Pro Max",
@@ -452,14 +453,15 @@
   "Falabella|https://www.falabella.com/falabella-cl/product/17564066/apple-iphone-17-pro/17564067": {
     "model": "iPhone 17 Pro",
     "title": "IPhone 17 Pro",
-    "price": 1279990,
+    "price": 1249990,
     "list_price": 1429990,
-    "discount": 10,
+    "discount": 13,
     "url": "https://www.falabella.com/falabella-cl/product/17564066/apple-iphone-17-pro/17564067",
     "image": "https://media.falabella.com/falabellaCL/17564067_1/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1279990
   },
   "Ripley|https://simple.ripley.cl/apple/2000412932430": {
     "model": "iPhone 18 Pro",
@@ -488,14 +490,15 @@
   "Falabella|https://www.falabella.com/falabella-cl/product/17564075/Apple-iPhone-17-Pro-Max/17564075": {
     "model": "iPhone 17 Pro Max",
     "title": "IPhone 17 Pro Max",
-    "price": 1369990,
+    "price": 1349990,
     "list_price": 1549990,
-    "discount": 12,
+    "discount": 13,
     "url": "https://www.falabella.com/falabella-cl/product/17564075/Apple-iPhone-17-Pro-Max/17564075",
     "image": "https://media.falabella.com/falabellaCL/17564075_1/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1369990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/17776863/iphone-18-pro-256gb-black/17776863": {
     "model": "iPhone 18 Pro",
@@ -560,14 +563,15 @@
   "MercadoLibre|https://www.mercadolibre.cl/iphone-17-pro-azul-profundo-256gb-apple-distribuidor-autorizado/p/MLC1055308781?pdp_filters=item_id%3AMLC1694287849": {
     "model": "iPhone 17 Pro",
     "title": "iPhone 17 Pro Azul profundo 256GB Apple - Distribuidor Autorizado",
-    "price": 1401050,
+    "price": 1259990,
     "list_price": 1429990,
-    "discount": 2,
+    "discount": 12,
     "url": "https://www.mercadolibre.cl/iphone-17-pro-azul-profundo-256gb-apple-distribuidor-autorizado/p/MLC1055308781?pdp_filters=item_id%3AMLC1694287849",
     "image": "https://http2.mlstatic.com/D_Q_NP_2X_635168-MLA97351397451_112025-AB.webp",
     "tags": [],
     "store": "MercadoLibre",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1401050
   },
   "Ripley|https://simple.ripley.cl/samsung/2000409988716": {
     "model": "Galaxy S26 Ultra",
@@ -1177,6 +1181,18 @@
     "discount": 38,
     "url": "https://www.falabella.com/falabella-cl/product/152132540/galaxy-s26-ultra-negro-dual-sim-256-gb-12-gb/152132541",
     "image": "https://media.falabella.com/falabellaCL/152132541_01/public",
+    "tags": [],
+    "store": "Falabella",
+    "trend": "nuevo"
+  },
+  "Falabella|https://www.falabella.com/falabella-cl/product/17776863/iphone-18-pro-256gb-black/17776870": {
+    "model": "iPhone 18 Pro",
+    "title": "IPhone 18 Pro",
+    "price": 1549990,
+    "list_price": 1549990,
+    "discount": 0,
+    "url": "https://www.falabella.com/falabella-cl/product/17776863/iphone-18-pro-256gb-black/17776870",
+    "image": "https://media.falabella.com/falabellaCL/17776870_1/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
     "trend": "nuevo"
