@@ -2,11 +2,19 @@ name: iphone-prices
 
 on:
   schedule:
-    - cron: "17 */3 * * *"   # cada 3 h, en el minuto 17 (evita la congestión de la hora en punto)
+    # Cada 5 min: el mínimo que permite GitHub Actions. En la práctica GitHub puede atrasar
+    # o saltarse corridas cuando está cargado, así que el intervalo real suele ser 5–15 min.
+    - cron: "*/5 * * * *"
   workflow_dispatch: {}       # permite ejecutarlo a mano desde la pestaña Actions
 
 permissions:
   contents: write             # necesario para commitear prices.json
+
+# Una corrida a la vez: si una se alarga más de 5 min, la siguiente espera en vez de
+# correr en paralelo (dos corridas pisándose prices.json mandarían avisos duplicados).
+concurrency:
+  group: iphone-prices
+  cancel-in-progress: false
 
 jobs:
   scrape:
@@ -21,13 +29,15 @@ jobs:
           cache: pip
 
       - run: pip install -r requirements.txt
-      - run: playwright install --with-deps chromium
 
       - name: Ejecutar scraper
         env:
           # se configuran en GitHub: Settings → Secrets and variables → Actions
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          # Google Chrome ya viene instalado en los runners de GitHub: se usa ese en vez de
+          # descargar Chromium en cada corrida (ahorra 1–2 min)
+          BROWSER_CHANNEL: chrome
         run: python scraper.py
 
       # Guarda el estado (prices.json) en el repo. Además de persistir los precios,
@@ -37,4 +47,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add prices.json
-          git diff --staged --quiet || (git commit -m "update prices" && git push)
+          if ! git diff --staged --quiet; then
+            git commit -m "update prices"
+            git pull --rebase   # por si subiste cambios mientras corría
+            git push
+          fi

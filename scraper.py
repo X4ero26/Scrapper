@@ -95,7 +95,7 @@ UA = (
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 )
 MIN_PRICE = 300_000  # descarta cuotas y accesorios (CLP)
-ZERO_RUNS_ALERT = 3  # avisar si una tienda no devuelve nada N corridas seguidas
+ZERO_RUNS_ALERT = 12  # avisar si una tienda no devuelve nada N corridas seguidas (~1 h corriendo cada 5 min)
 IMG_SIZE = 320  # lado máximo (px) de la foto enviada a Telegram; más chico = foto más pequeña
 
 # Precios que solo valen pagando con la tarjeta de la propia tienda: no se consideran.
@@ -291,7 +291,9 @@ def scrape(debug=False):
     if debug:
         DEBUG_DIR.mkdir(exist_ok=True)
     with sync_playwright() as pw:
-        browser = pw.chromium.launch(headless=True)
+        # BROWSER_CHANNEL=chrome usa el Chrome instalado (GitHub Actions); sin él, el Chromium de Playwright
+        channel = os.environ.get("BROWSER_CHANNEL") or None
+        browser = pw.chromium.launch(headless=True, channel=channel)
         # Intercalado: primero la 1ª URL de cada tienda, luego la 2ª, etc. (menos ráfagas por tienda)
         tasks = sorted(
             ((n, store, url) for store, store_urls in STORES.items()
