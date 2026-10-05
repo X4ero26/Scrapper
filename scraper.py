@@ -96,6 +96,7 @@ UA = (
 )
 MIN_PRICE = 300_000  # descarta cuotas y accesorios (CLP)
 ZERO_RUNS_ALERT = 12  # avisar si una tienda no devuelve nada N corridas seguidas (~1 h corriendo cada 5 min)
+SAVE_DEBUG = os.environ.get("SAVE_DEBUG") == "1"  # guardar screenshot/HTML de URLs sin resultados
 IMG_SIZE = 320  # lado máximo (px) de la foto enviada a Telegram; más chico = foto más pequeña
 
 # Precios que solo valen pagando con la tarjeta de la propia tienda: no se consideran.
@@ -288,8 +289,6 @@ def urls_for(store_urls):
 
 def scrape(debug=False):
     items = {}
-    if debug:
-        DEBUG_DIR.mkdir(exist_ok=True)
     with sync_playwright() as pw:
         # BROWSER_CHANNEL=chrome usa el Chrome instalado (GitHub Actions); sin él, el Chromium de Playwright
         channel = os.environ.get("BROWSER_CHANNEL") or None
@@ -331,15 +330,21 @@ def scrape(debug=False):
             except Exception as e:  # una tienda caída no debe romper el resto
                 print(f"[WARN] {store} {url}: {e}", file=sys.stderr)
             stats[store] += found
-            if debug:
-                print(f"  {store:<13} {found:>3}  {url}")
-                if found == 0:
-                    stem = DEBUG_DIR / f"{store}_{n}"
-                    try:
-                        page.screenshot(path=f"{stem}.png", full_page=True)
-                        Path(f"{stem}.html").write_text(page.content(), encoding="utf-8")
-                    except Exception:
-                        pass
+            # una línea por URL en el log (también en GitHub Actions); si no hay resultados, el título
+            # de la página suele decir por qué ("Robot or human?", "Blocked", 404...)
+            try:
+                title = page.title()[:60]
+            except Exception:
+                title = "?"
+            print(f"  {store:<13} {found:>3}  {url}" + (f"  ← 0 resultados, página: {title!r}" if not found else ""))
+            if (debug or SAVE_DEBUG) and found == 0:
+                DEBUG_DIR.mkdir(exist_ok=True)
+                stem = DEBUG_DIR / f"{store}_{n}"
+                try:
+                    page.screenshot(path=f"{stem}.png", full_page=True)
+                    Path(f"{stem}.html").write_text(page.content(), encoding="utf-8")
+                except Exception:
+                    pass
             ctx.close()
         browser.close()
     return items, stats

@@ -38,7 +38,17 @@ jobs:
           # Google Chrome ya viene instalado en los runners de GitHub: se usa ese en vez de
           # descargar Chromium en cada corrida (ahorra 1–2 min)
           BROWSER_CHANNEL: chrome
+          SAVE_DEBUG: "1"     # screenshot/HTML de las URLs sin resultados → artefacto "debug"
         run: python scraper.py
+
+      # Para diagnosticar bloqueos: en la página de la corrida, sección "Artifacts" → debug
+      - name: Subir capturas de URLs sin resultados
+        if: always() && hashFiles('debug/**') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug
+          path: debug/
+          retention-days: 1
 
       # Guarda el estado (prices.json) en el repo. Además de persistir los precios,
       # el commit cuenta como actividad y evita que GitHub desactive el cron.
