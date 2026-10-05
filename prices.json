@@ -243,8 +243,8 @@
   },
   "_health": {
     "Falabella": 0,
-    "Ripley": 2,
-    "Paris": 2,
+    "Ripley": 3,
+    "Paris": 3,
     "MacOnline": 0,
     "Lider": 1,
     "PCFactory": 1,
@@ -605,8 +605,7 @@
     "image": "https://http2.mlstatic.com/D_Q_NP_2X_863704-MLA107650327419_022026-AB.webp",
     "tags": [],
     "store": "MercadoLibre",
-    "trend": "bajó",
-    "prev_price": 1052015
+    "trend": "bajó"
   },
   "MercadoLibre|https://www.mercadolibre.cl/samsung-galaxy-s26-ultra-512gb-sky-blue/p/MLC65503970?pdp_filters=item_id%3AMLC3617334080": {
     "model": "Galaxy S26 Ultra",
@@ -618,21 +617,20 @@
     "image": "https://http2.mlstatic.com/D_Q_NP_2X_628715-MLA107649472055_022026-AB.webp",
     "tags": [],
     "store": "MercadoLibre",
-    "trend": "bajó",
-    "prev_price": 1429320
+    "trend": "bajó"
   },
   "MercadoLibre|https://www.mercadolibre.cl/samsung-galaxy-s26-ultra-512gb-black/p/MLC65503975?pdp_filters=item_id%3AMLC1862455557": {
     "model": "Galaxy S26 Ultra",
     "title": "Samsung Galaxy S26 Ultra 512GB BLACK",
-    "price": 1199990,
+    "price": 1189894,
     "list_price": 1799990,
-    "discount": 33,
+    "discount": 34,
     "url": "https://www.mercadolibre.cl/samsung-galaxy-s26-ultra-512gb-black/p/MLC65503975?pdp_filters=item_id%3AMLC1862455557",
     "image": "https://http2.mlstatic.com/D_Q_NP_2X_863704-MLA107650327419_022026-AB.webp",
     "tags": [],
     "store": "MercadoLibre",
     "trend": "bajó",
-    "prev_price": 1429352
+    "prev_price": 1199990
   },
   "MercadoLibre|https://www.mercadolibre.cl/samsung-galaxy-s26-ultra-512-gb-blanco/p/MLC65503978?pdp_filters=item_id%3AMLC3617360742": {
     "model": "Galaxy S26 Ultra",
@@ -644,8 +642,7 @@
     "image": "https://http2.mlstatic.com/D_Q_NP_2X_913159-MLA107649365817_022026-AB.webp",
     "tags": [],
     "store": "MercadoLibre",
-    "trend": "bajó",
-    "prev_price": 1431009
+    "trend": "bajó"
   },
   "MercadoLibre|https://www.mercadolibre.cl/galaxy-s26-ultra-1tb-white/p/MLC66131518?pdp_filters=item_id%3AMLC3714647086": {
     "model": "Galaxy S26 Ultra",
@@ -681,8 +678,7 @@
     "image": "https://http2.mlstatic.com/D_Q_NP_2X_823393-MLA108074641917_032026-AB.webp",
     "tags": [],
     "store": "MercadoLibre",
-    "trend": "bajó",
-    "prev_price": 1309990
+    "trend": "bajó"
   },
   "MercadoLibre|https://www.mercadolibre.cl/galaxy-s26-ultra-1-tb-violeta/p/MLC66013867?pdp_filters=item_id%3AMLC3867204564": {
     "model": "Galaxy S26 Ultra",
@@ -999,86 +995,93 @@
   "Falabella|https://www.falabella.com/falabella-cl/product/154344834/galaxy-s26-ultra-1tb-black/154344835": {
     "model": "Galaxy S26 Ultra",
     "title": "Galaxy S26 Ultra 1TB Black",
-    "price": 1199990,
+    "price": 1149990,
     "list_price": 2219990,
-    "discount": 46,
+    "discount": 48,
     "url": "https://www.falabella.com/falabella-cl/product/154344834/galaxy-s26-ultra-1tb-black/154344835",
     "image": "https://media.falabella.com/falabellaCL/154344835_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1199990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/154356058/galaxy-s26-ultra-1tb-cobalt-violet/154356059": {
     "model": "Galaxy S26 Ultra",
     "title": "Galaxy S26 Ultra 1TB Cobalt Violet",
-    "price": 1199990,
+    "price": 1149990,
     "list_price": 2219990,
-    "discount": 46,
+    "discount": 48,
     "url": "https://www.falabella.com/falabella-cl/product/154356058/galaxy-s26-ultra-1tb-cobalt-violet/154356059",
     "image": "https://media.falabella.com/falabellaCL/154356059_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1199990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944991/galaxy-s26-ultra-1tb-sky-blue/151944992": {
     "model": "Galaxy S26 Ultra",
     "title": "Galaxy S26 Ultra 1TB Sky Blue.",
-    "price": 1199990,
+    "price": 1149990,
     "list_price": 2219990,
-    "discount": 46,
+    "discount": 48,
     "url": "https://www.falabella.com/falabella-cl/product/151944991/galaxy-s26-ultra-1tb-sky-blue/151944992",
-    "image": "https://media.falabella.com/falabellaCL/151944992_01/width=240,height=240,quality=70,format=webp,fit=pad",
+    "image": "https://media.falabella.com/falabellaCL/151944992_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1199990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944957/galaxy-s26-ultra-1tb-white/151944958": {
     "model": "Galaxy S26 Ultra",
     "title": "Galaxy S26 Ultra 1TB White.",
-    "price": 1199990,
+    "price": 1149990,
     "list_price": 2219990,
-    "discount": 46,
+    "discount": 48,
     "url": "https://www.falabella.com/falabella-cl/product/151944957/galaxy-s26-ultra-1tb-white/151944958",
     "image": "https://media.falabella.com/falabellaCL/151944958_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1199990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944977/galaxy-s26-ultra-512gb-black/151944978": {
     "model": "Galaxy S26 Ultra",
     "title": "Galaxy S26 Ultra 512 GB Black.",
-    "price": 1199990,
+    "price": 1149990,
     "list_price": 1849989,
-    "discount": 35,
+    "discount": 38,
     "url": "https://www.falabella.com/falabella-cl/product/151944977/galaxy-s26-ultra-512gb-black/151944978",
     "image": "https://media.falabella.com/falabellaCL/151944978_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1199990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151949442/galaxy-s26-ultra-violeta-cobalto-dual-sim-512-gb-12-gb/151949443": {
     "model": "Galaxy S26 Ultra",
     "title": "Galaxy S26 Ultra 512GB Cobalt Violet",
-    "price": 1199990,
+    "price": 1149990,
     "list_price": 1849989,
-    "discount": 35,
+    "discount": 38,
     "url": "https://www.falabella.com/falabella-cl/product/151949442/galaxy-s26-ultra-violeta-cobalto-dual-sim-512-gb-12-gb/151949443",
     "image": "https://media.falabella.com/falabellaCL/151949443_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1199990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151949411/galaxy-s26-ultra-exclusivo-en-samsung-com-oro-rosa-dual-sim-512-gb-12-gb/151949413": {
     "model": "Galaxy S26 Ultra",
     "title": "Galaxy S26 Ultra 512GB Pinkgold.",
-    "price": 1199990,
+    "price": 1149990,
     "list_price": 1849989,
-    "discount": 35,
+    "discount": 38,
     "url": "https://www.falabella.com/falabella-cl/product/151949411/galaxy-s26-ultra-exclusivo-en-samsung-com-oro-rosa-dual-sim-512-gb-12-gb/151949413",
     "image": "https://media.falabella.com/falabellaCL/151949413_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1199990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151949429/galaxy-s26-ultra-violeta-cobalto-dual-sim-256-gb-12-gb/151949431": {
     "model": "Galaxy S26 Ultra",
@@ -1107,38 +1110,41 @@
   "Falabella|https://www.falabella.com/falabella-cl/product/151944975/galaxy-s26-ultra-512gb-sky-blue/151944976": {
     "model": "Galaxy S26 Ultra",
     "title": "Galaxy S26 Ultra 512GB Sky Blue.",
-    "price": 1199990,
+    "price": 1149990,
     "list_price": 1849989,
-    "discount": 35,
+    "discount": 38,
     "url": "https://www.falabella.com/falabella-cl/product/151944975/galaxy-s26-ultra-512gb-sky-blue/151944976",
     "image": "https://media.falabella.com/falabellaCL/151944976_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1199990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944959/galaxy-s26-ultra-512gb-white/151944960": {
     "model": "Galaxy S26 Ultra",
     "title": "Galaxy S26 Ultra 512GB White.",
-    "price": 1199990,
+    "price": 1149990,
     "list_price": 1849989,
-    "discount": 35,
+    "discount": 38,
     "url": "https://www.falabella.com/falabella-cl/product/151944959/galaxy-s26-ultra-512gb-white/151944960",
     "image": "https://media.falabella.com/falabellaCL/151944960_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1199990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944997/galaxy-s26-ultra-512gb-silver-shadow/151944998": {
     "model": "Galaxy S26 Ultra",
     "title": "Galaxy S26 Ultra 512GB Silver Shadow.",
-    "price": 1199990,
+    "price": 1149990,
     "list_price": 1849989,
-    "discount": 35,
+    "discount": 38,
     "url": "https://www.falabella.com/falabella-cl/product/151944997/galaxy-s26-ultra-512gb-silver-shadow/151944998",
     "image": "https://media.falabella.com/falabellaCL/151944998_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "nuevo"
+    "trend": "bajó",
+    "prev_price": 1199990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944989/galaxy-s26-ultra-256gb-white/151944990": {
     "model": "Galaxy S26 Ultra",
@@ -1256,6 +1262,102 @@
     "discount": 46,
     "url": "https://www.falabella.com/falabella-cl/product/154356058/galaxy-s26-ultra-1tb-cobalt-violet/154356059?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTE5Mjk2MTI5NA%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522qJNFHAoQBqw29_YbfMiDBH84nX-5sRIQAZu43b0CcPChvTHOzZpy_BoQAZnJ_AKzf6GI86wGQYslKyINCgkxNTQzNTYwNTgQATDf2XFIAVCxk67bkDRgnwRyEAAAAAAAAAAAAAAAAAAAAAB4AoUBAABAQQ%2522%252C%2522slot%2522%253A8%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D",
     "image": "https://media.falabella.com/falabellaCL/154356059_01/width=240,height=240,quality=70,format=webp,fit=pad",
+    "tags": [],
+    "store": "Falabella",
+    "trend": "nuevo"
+  },
+  "Falabella|https://www.falabella.com/falabella-cl/product/17564066/apple-iphone-17-pro/17564066": {
+    "model": "iPhone 17 Pro",
+    "title": "IPhone 17 Pro",
+    "price": 1249990,
+    "list_price": 1429990,
+    "discount": 13,
+    "url": "https://www.falabella.com/falabella-cl/product/17564066/apple-iphone-17-pro/17564066",
+    "image": "https://media.falabella.com/falabellaCL/17564066_1/width=240,height=240,quality=70,format=webp,fit=pad",
+    "tags": [],
+    "store": "Falabella",
+    "trend": "nuevo"
+  },
+  "Falabella|https://www.falabella.com/falabella-cl/product/17723152/celular-samsung-galaxy-s26-ultra-256gb-black/17723152?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522dLBc_woQBqw_FSGCdEmKBBiC88X2bxIQAaEMR667d4S5oFt9BcSxrhoQAZnjLyP1edGOHUMDVPPKKyIMCggxNzcyMzE1MhABMOGDckgBULXRmuuQNGDGCnIQAAAAAAAAAAAAAAAAAAAAAHgChQEAAEBB%2522%252C%2522slot%2522%253A1%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D": {
+    "model": "Galaxy S26 Ultra",
+    "title": "Celular Galaxy S26 Ultra 256GB Black",
+    "price": 899990,
+    "list_price": 1549990,
+    "discount": 42,
+    "url": "https://www.falabella.com/falabella-cl/product/17723152/celular-samsung-galaxy-s26-ultra-256gb-black/17723152?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522dLBc_woQBqw_FSGCdEmKBBiC88X2bxIQAaEMR667d4S5oFt9BcSxrhoQAZnjLyP1edGOHUMDVPPKKyIMCggxNzcyMzE1MhABMOGDckgBULXRmuuQNGDGCnIQAAAAAAAAAAAAAAAAAAAAAHgChQEAAEBB%2522%252C%2522slot%2522%253A1%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D",
+    "image": "https://media.falabella.com/falabellaCL/17723152_1/width=240,height=240,quality=70,format=webp,fit=pad",
+    "tags": [],
+    "store": "Falabella",
+    "trend": "nuevo"
+  },
+  "Falabella|https://www.falabella.com/falabella-cl/product/17667494/celular-samsung-galaxy-s26-ultra-256gb/17667494?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%252298na2QoQBqw_FSGCdEmKBBiC88X2bxIQAaEMR667d4S5oFt9BcSxrhoQAZnjLyP1edGOHUMDVPPKKyIMCggxNzY2NzQ5NBABMOGDckgBULXRmuuQNGDGCnIQAAAAAAAAAAAAAAAAAAAAAHgChQEAAEBB%2522%252C%2522slot%2522%253A2%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D": {
+    "model": "Galaxy S26 Ultra",
+    "title": "Celular Galaxy S26 Ultra 256GB",
+    "price": 899990,
+    "list_price": 1549990,
+    "discount": 42,
+    "url": "https://www.falabella.com/falabella-cl/product/17667494/celular-samsung-galaxy-s26-ultra-256gb/17667494?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%252298na2QoQBqw_FSGCdEmKBBiC88X2bxIQAaEMR667d4S5oFt9BcSxrhoQAZnjLyP1edGOHUMDVPPKKyIMCggxNzY2NzQ5NBABMOGDckgBULXRmuuQNGDGCnIQAAAAAAAAAAAAAAAAAAAAAHgChQEAAEBB%2522%252C%2522slot%2522%253A2%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D",
+    "image": "https://media.falabella.com/falabellaCL/17667494_1/width=240,height=240,quality=70,format=webp,fit=pad",
+    "tags": [],
+    "store": "Falabella",
+    "trend": "nuevo"
+  },
+  "Falabella|https://www.falabella.com/falabella-cl/product/17667494/celular-samsung-galaxy-s26-ultra-256gb/17667494": {
+    "model": "Galaxy S26 Ultra",
+    "title": "Celular Galaxy S26 Ultra 256GB",
+    "price": 899990,
+    "list_price": 1549990,
+    "discount": 42,
+    "url": "https://www.falabella.com/falabella-cl/product/17667494/celular-samsung-galaxy-s26-ultra-256gb/17667494",
+    "image": "https://media.falabella.com/falabellaCL/17667494_1/width=240,height=240,quality=70,format=webp,fit=pad",
+    "tags": [],
+    "store": "Falabella",
+    "trend": "nuevo"
+  },
+  "Falabella|https://www.falabella.com/falabella-cl/product/154344834/galaxy-s26-ultra-1tb-black/154344835?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522Aa4H4goQBqw_FSGCdEmKBBiC88X2bxIQAZu43b0CcPChvTHOzZpy_BoQAZnJ_AKzf6GI86wGQYslKyINCgkxNTQzNDQ4MzQQATDf2XFIAVC10ZrrkDRg2QJyEAAAAAAAAAAAAAAAAAAAAAB4AoUBAABAQQ%2522%252C%2522slot%2522%253A7%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D": {
+    "model": "Galaxy S26 Ultra",
+    "title": "Galaxy S26 Ultra 1TB Black",
+    "price": 1149990,
+    "list_price": 2219990,
+    "discount": 48,
+    "url": "https://www.falabella.com/falabella-cl/product/154344834/galaxy-s26-ultra-1tb-black/154344835?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522Aa4H4goQBqw_FSGCdEmKBBiC88X2bxIQAZu43b0CcPChvTHOzZpy_BoQAZnJ_AKzf6GI86wGQYslKyINCgkxNTQzNDQ4MzQQATDf2XFIAVC10ZrrkDRg2QJyEAAAAAAAAAAAAAAAAAAAAAB4AoUBAABAQQ%2522%252C%2522slot%2522%253A7%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D",
+    "image": "https://media.falabella.com/falabellaCL/154344835_01/width=240,height=240,quality=70,format=webp,fit=pad",
+    "tags": [],
+    "store": "Falabella",
+    "trend": "nuevo"
+  },
+  "Falabella|https://www.falabella.com/falabella-cl/product/154356058/galaxy-s26-ultra-1tb-cobalt-violet/154356059?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522YldKzgoQBqw_FSGCdEmKBBiC88X2bxIQAZu43b0CcPChvTHOzZpy_BoQAZnJ_AKzf6GI86wGQYslKyINCgkxNTQzNTYwNTgQATDf2XFIAVC10ZrrkDRg2AJyEAAAAAAAAAAAAAAAAAAAAAB4AoUBAABAQQ%2522%252C%2522slot%2522%253A8%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D": {
+    "model": "Galaxy S26 Ultra",
+    "title": "Galaxy S26 Ultra 1TB Cobalt Violet",
+    "price": 1149990,
+    "list_price": 2219990,
+    "discount": 48,
+    "url": "https://www.falabella.com/falabella-cl/product/154356058/galaxy-s26-ultra-1tb-cobalt-violet/154356059?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522YldKzgoQBqw_FSGCdEmKBBiC88X2bxIQAZu43b0CcPChvTHOzZpy_BoQAZnJ_AKzf6GI86wGQYslKyINCgkxNTQzNTYwNTgQATDf2XFIAVC10ZrrkDRg2AJyEAAAAAAAAAAAAAAAAAAAAAB4AoUBAABAQQ%2522%252C%2522slot%2522%253A8%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D",
+    "image": "https://media.falabella.com/falabellaCL/154356059_01/width=240,height=240,quality=70,format=webp,fit=pad",
+    "tags": [],
+    "store": "Falabella",
+    "trend": "nuevo"
+  },
+  "Falabella|https://www.falabella.com/falabella-cl/product/151944991/galaxy-s26-ultra-1tb-sky-blue/151944992?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522QqkhOwoQBqw_FSGCdEmKBBiC88X2bxIQAZu43b0CcPChvTHOzZpy_BoQAZnJ_AKzf6GI86wGQYslKyINCgkxNTE5NDQ5OTEQATDf2XFIAVC10ZrrkDRg8AJyEAAAAAAAAAAAAAAAAAAAAAB4AoUBAABAQQ%2522%252C%2522slot%2522%253A29%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D": {
+    "model": "Galaxy S26 Ultra",
+    "title": "Galaxy S26 Ultra 1TB Sky Blue.",
+    "price": 1149990,
+    "list_price": 2219990,
+    "discount": 48,
+    "url": "https://www.falabella.com/falabella-cl/product/151944991/galaxy-s26-ultra-1tb-sky-blue/151944992?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522QqkhOwoQBqw_FSGCdEmKBBiC88X2bxIQAZu43b0CcPChvTHOzZpy_BoQAZnJ_AKzf6GI86wGQYslKyINCgkxNTE5NDQ5OTEQATDf2XFIAVC10ZrrkDRg8AJyEAAAAAAAAAAAAAAAAAAAAAB4AoUBAABAQQ%2522%252C%2522slot%2522%253A29%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D",
+    "image": "https://media.falabella.com/falabellaCL/151944992_01/width=240,height=240,quality=70,format=webp,fit=pad",
+    "tags": [],
+    "store": "Falabella",
+    "trend": "nuevo"
+  },
+  "Falabella|https://www.falabella.com/falabella-cl/product/151944957/galaxy-s26-ultra-1tb-white/151944958?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522bpujVAoQBqw_FSGCdEmKBBiC88X2bxIQAZu43b0CcPChvTHOzZpy_BoQAZnJ_AKzf6GI86wGQYslKyINCgkxNTE5NDQ5NTcQATDf2XFIAVC10ZrrkDRgrQJyEAAAAAAAAAAAAAAAAAAAAAB4AoUBAABAQQ%2522%252C%2522slot%2522%253A30%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D": {
+    "model": "Galaxy S26 Ultra",
+    "title": "Galaxy S26 Ultra 1TB White.",
+    "price": 1149990,
+    "list_price": 2219990,
+    "discount": 48,
+    "url": "https://www.falabella.com/falabella-cl/product/151944957/galaxy-s26-ultra-1tb-white/151944958?sponsoredClickData=%257B%2522isXLP%2522%253Atrue%252C%2522pageType%2522%253A%2522search%2522%252C%2522adType%2522%253A%2522products%2522%252C%2522platform%2522%253A%2522desktop%2522%252C%2522regionCode%2522%253A%2522cl%2522%252C%2522context%2522%253A%257B%2522userIdentifier%2522%253A%2522MTc5MTIyNjE5NjMyOA%253D%253D%2522%252C%2522adIdentifier%2522%253A%2522bpujVAoQBqw_FSGCdEmKBBiC88X2bxIQAZu43b0CcPChvTHOzZpy_BoQAZnJ_AKzf6GI86wGQYslKyINCgkxNTE5NDQ5NTcQATDf2XFIAVC10ZrrkDRgrQJyEAAAAAAAAAAAAAAAAAAAAAB4AoUBAABAQQ%2522%252C%2522slot%2522%253A30%252C%2522signal%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522searchTerm%2522%253A%2522samsung%2520s26%2520ultra%2522%252C%2522providerName%2522%253A%2522topsort%2522%257D%257D",
+    "image": "https://media.falabella.com/falabellaCL/151944958_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
     "trend": "nuevo"
