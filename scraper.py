@@ -449,8 +449,28 @@ def notify(alerts, products):
         time.sleep(1.1)  # límite de Telegram: ~1 mensaje/segundo por chat
 
 
+def load_env():
+    """En tu PC: lee TELEGRAM_* desde un archivo .env junto al script (excluido de Git).
+    En GitHub Actions vienen de los Secrets y esto no hace nada."""
+    env_file = BASE / ".env"
+    if not env_file.exists():
+        return
+    for line in env_file.read_text(encoding="utf-8").splitlines():
+        key, sep, value = line.partition("=")
+        if sep and not line.lstrip().startswith("#"):
+            os.environ.setdefault(key.strip(), value.strip().strip('"'))
+
+
 def main():
     check = "--check" in sys.argv
+    load_env()
+    missing = [k for k in ("TELEGRAM_TOKEN", "TELEGRAM_CHAT_ID") if not os.environ.get(k)]
+    if missing and not check:  # avisar antes de scrapear, no 3 min después
+        sys.exit(
+            f"Faltan {', '.join(missing)}. En tu PC ponlos en un archivo .env junto a scraper.py "
+            "(ver .env.example); en GitHub Actions van en los Secrets.\n"
+            "Para probar sin Telegram: python scraper.py --check"
+        )
     old = json.loads(STATE_FILE.read_text(encoding="utf-8")) if STATE_FILE.exists() else {}
     new, stats = scrape(debug=check)
 
