@@ -59,6 +59,12 @@ ALLOWED_SELLERS = {
     "Falabella": {"samsung"},  # tienda oficial de Samsung dentro de Falabella ("Por Samsung")
 }
 
+# Lider bloquea el acceso automatizado (verificación "Robot or human?" de PerimeterX): no se scrapea.
+# Sus productos se leen de la API pública de Solotodo (comparador de precios chileno), que ya los rastrea.
+# Solo la tienda "Lider" (id 43), es decir, vendidos por Lider; "Lider Marketplace" (id 8642) son terceros.
+SOLOTODO_API = "https://publicapi.solotodo.com"
+SOLOTODO_STORES = {"Lider": 43}
+
 # Tiendas "parecidas" opcionales (más resultados de terceros / marketplace).
 OPTIONAL_STORES = {
     "Hites": ["https://www.hites.com/search?q={q}"],
@@ -312,21 +318,8 @@ def scrape(debug=False):
                 for raw in page.evaluate(JS_EXTRACT, [CARD_ONLY.get(store, ""), TITLE_RE]):
                     it = parse_item(raw, store)
                     if it:
-                        it["store"] = store
-                        key = f"{store}|{it['url']}"
                         found += 1
-                        # el mismo producto puede salir en categoría y búsqueda con precios distintos
-                        # (Paris): se queda el menor para no avisar subidas/bajadas falsas
-                        prev = items.get(key)
-                        if prev and prev["price"] <= it["price"]:
-                            continue
-                        items[key] = it
-                        if debug:
-                            print(
-                                f"      {it['model']:<18} {clp(it['price']):>11} -{it['discount']:>2}%"
-                                f"  {'img' if it['image'] else '---'}  {it['title'][:45]}"
-                                + (f"  [{', '.join(it['tags'])}]" if it["tags"] else "")
-                            )
+                        add_item(items, store, it, debug)
             except Exception as e:  # una tienda caída no debe romper el resto
                 print(f"[WARN] {store} {url}: {e}", file=sys.stderr)
             stats[store] += found
@@ -347,7 +340,62 @@ def scrape(debug=False):
                     pass
             ctx.close()
         browser.close()
+    for store, store_id in SOLOTODO_STORES.items():
+        found = 0
+        try:
+            for raw in solotodo_entities(store_id):
+                it = parse_item(raw, store)
+                if it:
+                    found += 1
+                    add_item(items, store, it, debug)
+        except Exception as e:
+            print(f"[WARN] {store} (Solotodo): {e}", file=sys.stderr)
+        stats[store] = found
+        print(f"  {store:<13} {found:>3}  Solotodo (tienda {store_id})" + (" ← 0 resultados" if not found else ""))
     return items, stats
+
+
+def add_item(items, store, it, debug=False):
+    """Guarda un producto. El mismo producto puede salir en categoría y búsqueda con precios distintos
+    (Paris): se queda el menor para no avisar subidas/bajadas falsas."""
+    it["store"] = store
+    key = f"{store}|{it['url']}"
+    prev = items.get(key)
+    if prev and prev["price"] <= it["price"]:
+        return
+    items[key] = it
+    if debug:
+        print(
+            f"      {it['model']:<18} {clp(it['price']):>11} -{it['discount']:>2}%"
+            f"  {'img' if it['image'] else '---'}  {it['title'][:45]}"
+            + (f"  [{', '.join(it['tags'])}]" if it["tags"] else "")
+        )
+
+
+def solotodo_entities(store_id):
+    """Productos de una tienda desde la API pública de Solotodo, con el mismo formato que el scraping
+    del navegador (para pasar por parse_item). Solo los con precio vigente y disponibles."""
+    seen = set()
+    for q in SEARCHES:
+        url, params = f"{SOLOTODO_API}/entities/", {"stores": store_id, "search": q, "page_size": 100}
+        while url:
+            r = requests.get(url, params=params, headers={"User-Agent": UA}, timeout=30)
+            r.raise_for_status()
+            data = r.json()
+            for e in data["results"]:
+                reg = e.get("active_registry")
+                if e["id"] in seen or not e.get("is_visible") or not reg or not reg.get("is_available"):
+                    continue
+                seen.add(e["id"])
+                # normal_price = vale con cualquier medio de pago; offer_price puede exigir tarjeta/transferencia
+                price = int(float(reg["normal_price"]))
+                yield {
+                    "href": e["external_url"],
+                    "text": f"{e['name']}\n{clp(price)}",
+                    "image": (e.get("picture_urls") or [""])[0],
+                    "ld": True,  # el nombre viene del catálogo, no hay que cruzarlo con la URL
+                }
+            url, params = data.get("next"), None
 
 
 def clp(n):
