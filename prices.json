@@ -243,8 +243,8 @@
   },
   "_health": {
     "Falabella": 0,
-    "Ripley": 3,
-    "Paris": 3,
+    "Ripley": 4,
+    "Paris": 4,
     "MacOnline": 0,
     "Lider": 1,
     "PCFactory": 1,
@@ -405,14 +405,15 @@
   "Falabella|https://www.falabella.com/falabella-cl/product/17564075/Apple-iPhone-17-Pro-Max/17564077": {
     "model": "iPhone 17 Pro Max",
     "title": "IPhone 17 Pro Max",
-    "price": 1369990,
+    "price": 1349990,
     "list_price": 1549990,
-    "discount": 12,
+    "discount": 13,
     "url": "https://www.falabella.com/falabella-cl/product/17564075/Apple-iPhone-17-Pro-Max/17564077",
     "image": "https://media.falabella.com/falabellaCL/17564077_1/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
-    "trend": "bajó"
+    "trend": "bajó",
+    "prev_price": 1369990
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/17776863/iphone-18-pro-256gb-black/17776867": {
     "model": "iPhone 18 Pro",
@@ -598,14 +599,15 @@
   "MercadoLibre|https://www.mercadolibre.cl/samsung-galaxy-s26-ultra-256gb-black/p/MLC65503984?pdp_filters=item_id%3AMLC3617526106": {
     "model": "Galaxy S26 Ultra",
     "title": "Samsung Galaxy S26 Ultra 256GB BLACK",
-    "price": 940643,
+    "price": 879990,
     "list_price": 1549990,
-    "discount": 39,
+    "discount": 43,
     "url": "https://www.mercadolibre.cl/samsung-galaxy-s26-ultra-256gb-black/p/MLC65503984?pdp_filters=item_id%3AMLC3617526106",
     "image": "https://http2.mlstatic.com/D_Q_NP_2X_863704-MLA107650327419_022026-AB.webp",
     "tags": [],
     "store": "MercadoLibre",
-    "trend": "bajó"
+    "trend": "bajó",
+    "prev_price": 940643
   },
   "MercadoLibre|https://www.mercadolibre.cl/samsung-galaxy-s26-ultra-512gb-sky-blue/p/MLC65503970?pdp_filters=item_id%3AMLC3617334080": {
     "model": "Galaxy S26 Ultra",
@@ -629,8 +631,7 @@
     "image": "https://http2.mlstatic.com/D_Q_NP_2X_863704-MLA107650327419_022026-AB.webp",
     "tags": [],
     "store": "MercadoLibre",
-    "trend": "bajó",
-    "prev_price": 1199990
+    "trend": "bajó"
   },
   "MercadoLibre|https://www.mercadolibre.cl/samsung-galaxy-s26-ultra-512-gb-blanco/p/MLC65503978?pdp_filters=item_id%3AMLC3617360742": {
     "model": "Galaxy S26 Ultra",
@@ -1002,8 +1003,7 @@
     "image": "https://media.falabella.com/falabellaCL/154344835_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
-    "trend": "bajó",
-    "prev_price": 1199990
+    "trend": "bajó"
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/154356058/galaxy-s26-ultra-1tb-cobalt-violet/154356059": {
     "model": "Galaxy S26 Ultra",
@@ -1015,8 +1015,7 @@
     "image": "https://media.falabella.com/falabellaCL/154356059_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
-    "trend": "bajó",
-    "prev_price": 1199990
+    "trend": "bajó"
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944991/galaxy-s26-ultra-1tb-sky-blue/151944992": {
     "model": "Galaxy S26 Ultra",
@@ -1025,11 +1024,10 @@
     "list_price": 2219990,
     "discount": 48,
     "url": "https://www.falabella.com/falabella-cl/product/151944991/galaxy-s26-ultra-1tb-sky-blue/151944992",
-    "image": "https://media.falabella.com/falabellaCL/151944992_01/public",
+    "image": "https://media.falabella.com/falabellaCL/151944992_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
-    "trend": "bajó",
-    "prev_price": 1199990
+    "trend": "bajó"
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944957/galaxy-s26-ultra-1tb-white/151944958": {
     "model": "Galaxy S26 Ultra",
@@ -1041,8 +1039,7 @@
     "image": "https://media.falabella.com/falabellaCL/151944958_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
-    "trend": "bajó",
-    "prev_price": 1199990
+    "trend": "bajó"
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944977/galaxy-s26-ultra-512gb-black/151944978": {
     "model": "Galaxy S26 Ultra",
@@ -1051,11 +1048,10 @@
     "list_price": 1849989,
     "discount": 38,
     "url": "https://www.falabella.com/falabella-cl/product/151944977/galaxy-s26-ultra-512gb-black/151944978",
-    "image": "https://media.falabella.com/falabellaCL/151944978_01/public",
+    "image": "https://media.falabella.com/falabellaCL/151944978_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
-    "trend": "bajó",
-    "prev_price": 1199990
+    "trend": "bajó"
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151949442/galaxy-s26-ultra-violeta-cobalto-dual-sim-512-gb-12-gb/151949443": {
     "model": "Galaxy S26 Ultra",
@@ -1067,8 +1063,7 @@
     "image": "https://media.falabella.com/falabellaCL/151949443_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "bajó",
-    "prev_price": 1199990
+    "trend": "bajó"
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151949411/galaxy-s26-ultra-exclusivo-en-samsung-com-oro-rosa-dual-sim-512-gb-12-gb/151949413": {
     "model": "Galaxy S26 Ultra",
@@ -1080,8 +1075,7 @@
     "image": "https://media.falabella.com/falabellaCL/151949413_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "bajó",
-    "prev_price": 1199990
+    "trend": "bajó"
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151949429/galaxy-s26-ultra-violeta-cobalto-dual-sim-256-gb-12-gb/151949431": {
     "model": "Galaxy S26 Ultra",
@@ -1090,7 +1084,7 @@
     "list_price": 1599990,
     "discount": 38,
     "url": "https://www.falabella.com/falabella-cl/product/151949429/galaxy-s26-ultra-violeta-cobalto-dual-sim-256-gb-12-gb/151949431",
-    "image": "https://media.falabella.com/falabellaCL/151949431_01/public",
+    "image": "https://media.falabella.com/falabellaCL/151949431_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
     "trend": "nuevo"
@@ -1102,7 +1096,7 @@
     "list_price": 1599990,
     "discount": 38,
     "url": "https://www.falabella.com/falabella-cl/product/151949423/galaxy-s26-ultra-exclusivo-en-samsung-com-oro-rosa-dual-sim-256-gb-12-gb/151949425",
-    "image": "https://media.falabella.com/falabellaCL/151949425_01/public",
+    "image": "https://media.falabella.com/falabellaCL/151949425_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
     "trend": "nuevo"
@@ -1117,8 +1111,7 @@
     "image": "https://media.falabella.com/falabellaCL/151944976_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "bajó",
-    "prev_price": 1199990
+    "trend": "bajó"
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944959/galaxy-s26-ultra-512gb-white/151944960": {
     "model": "Galaxy S26 Ultra",
@@ -1130,8 +1123,7 @@
     "image": "https://media.falabella.com/falabellaCL/151944960_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "bajó",
-    "prev_price": 1199990
+    "trend": "bajó"
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944997/galaxy-s26-ultra-512gb-silver-shadow/151944998": {
     "model": "Galaxy S26 Ultra",
@@ -1143,8 +1135,7 @@
     "image": "https://media.falabella.com/falabellaCL/151944998_01/public",
     "tags": [],
     "store": "Falabella",
-    "trend": "bajó",
-    "prev_price": 1199990
+    "trend": "bajó"
   },
   "Falabella|https://www.falabella.com/falabella-cl/product/151944989/galaxy-s26-ultra-256gb-white/151944990": {
     "model": "Galaxy S26 Ultra",
@@ -1360,6 +1351,18 @@
     "image": "https://media.falabella.com/falabellaCL/151944958_01/width=240,height=240,quality=70,format=webp,fit=pad",
     "tags": [],
     "store": "Falabella",
+    "trend": "nuevo"
+  },
+  "MercadoLibre|https://www.mercadolibre.cl/samsung-galaxy-s26-ultra-256gb-sky-blue/p/MLC65503993?pdp_filters=item_id%3AMLC3617373026": {
+    "model": "Galaxy S26 Ultra",
+    "title": "Samsung Galaxy S26 Ultra 256gb Sky Blue",
+    "price": 879990,
+    "list_price": 1549990,
+    "discount": 43,
+    "url": "https://www.mercadolibre.cl/samsung-galaxy-s26-ultra-256gb-sky-blue/p/MLC65503993?pdp_filters=item_id%3AMLC3617373026",
+    "image": "https://http2.mlstatic.com/D_Q_NP_2X_628715-MLA107649472055_022026-AB.webp",
+    "tags": [],
+    "store": "MercadoLibre",
     "trend": "nuevo"
   }
 }
