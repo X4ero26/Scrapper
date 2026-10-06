@@ -7,12 +7,16 @@ Uso:
     export TELEGRAM_TOKEN="123456:ABC..."
     export TELEGRAM_CHAT_ID="123456789"
     python scraper.py            # corrida normal (notifica y guarda estado)
+    python scraper.py --loop     # monitor continuo: ciclos con pausa aleatoria (LOOP_PAUSE_MIN, 3 min por defecto)
     python scraper.py --check    # diagnóstico: no notifica ni guarda, imprime resultados
                                  # por tienda y guarda screenshot/HTML en debug/ si una URL no devuelve nada
 """
 import io
 import json
+import logging
+import logging.handlers
 import os
+import random
 import re
 import sys
 import time
@@ -98,7 +102,11 @@ UA = (
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 )
 MIN_PRICE = 300_000  # descarta cuotas y accesorios (CLP)
-ZERO_RUNS_ALERT = 12  # avisar si una tienda no devuelve nada N corridas seguidas (~1 h corriendo cada 5 min)
+ZERO_RUNS_ALERT = 4  # avisar si una tienda no devuelve nada N intentos seguidos (con la pausa creciente, ~2 h)
+LOOP_PAUSE_MIN = 3  # modo --loop: minutos de pausa entre ciclos (cada ciclo dura ~4,5 min más)
+LOOP_JITTER = 0.25  # variación aleatoria de esa pausa (±25 %): que no sea un ritmo exacto de bot
+PAGE_PAUSE = (2.0, 6.0)  # modo --loop: segundos aleatorios entre una página y la siguiente
+MAX_COOLDOWN_CYCLES = 12  # tope de ciclos que se salta una tienda que dejó de responder
 SAVE_DEBUG = os.environ.get("SAVE_DEBUG") == "1"  # guardar screenshot/HTML de URLs sin resultados
 IMG_SIZE = 320  # lado máximo (px) de la foto enviada a Telegram; más chico = foto más pequeña
 
@@ -292,7 +300,9 @@ def urls_for(store_urls):
     return urls
 
 
-def scrape(debug=False):
+def scrape(debug=False, skip=(), polite=False):
+    """skip: tiendas a no visitar este ciclo (en pausa por posible bloqueo).
+    polite: pausa aleatoria entre páginas, para no hacer ráfagas contra un mismo sitio."""
     items = {}
     with sync_playwright() as pw:
         # BROWSER_CHANNEL=chrome usa el Chrome instalado (GitHub Actions); sin él, el Chromium de Playwright
@@ -300,13 +310,15 @@ def scrape(debug=False):
         browser = pw.chromium.launch(headless=True, channel=channel)
         # Intercalado: primero la 1ª URL de cada tienda, luego la 2ª, etc. (menos ráfagas por tienda)
         tasks = sorted(
-            ((n, store, url) for store, store_urls in STORES.items()
+            ((n, store, url) for store, store_urls in STORES.items() if store not in skip
              for n, url in enumerate(urls_for(store_urls))),
             key=lambda t: t[0],
         )
-        stats = dict.fromkeys(STORES, 0)
-        for n, store, url in tasks:
+        stats = {s: 0 for s in [*STORES, *SOLOTODO_STORES] if s not in skip}
+        for i, (n, store, url) in enumerate(tasks):
             found = 0
+            if polite and i:
+                time.sleep(random.uniform(*PAGE_PAUSE))
             # sesión nueva (cookies limpias) por URL: Ripley bloquea la 2ª búsqueda de una misma sesión
             ctx = browser.new_context(locale="es-CL", user_agent=UA)
             page = ctx.new_page()
@@ -340,6 +352,8 @@ def scrape(debug=False):
             ctx.close()
         browser.close()
     for store, store_id in SOLOTODO_STORES.items():
+        if store in skip:
+            continue
         found = 0
         try:
             for raw in solotodo_entities(store_id):
@@ -403,9 +417,12 @@ def clp(n):
 
 TREND = {
     "nuevo": "🆕 NUEVO",
-    "bajó": "🔻 BAJÓ DE PRECIO",
-    "subió": "🔺 SUBIÓ DE PRECIO",
+    "bajó": "✅ BAJÓ DE PRECIO",  # verde
+    "subió": "🔴 SUBIÓ DE PRECIO",  # rojo: bien distinto del verde de las bajas
 }
+# Qué cambios llegan por Telegram. Los demás igual se guardan, para comparar la próxima baja contra el
+# último precio visto. Agrega "subió" y/o "nuevo" si algún día quieres esos avisos también.
+NOTIFY_TRENDS = {"bajó"}
 
 
 def caption(it):
@@ -417,15 +434,15 @@ def caption(it):
         price += f"  (-{it['discount']}% · normal {clp(it['list_price'])})"
     lines.append(price)
     if it["trend"] != "nuevo":
-        pct = (it["price"] - it["prev_price"]) * 100 / it["prev_price"]
-        pct = f"{pct:+.1f}".replace(".", ",")
-        lines.append(f"Antes: {clp(it['prev_price'])}  ({pct}%)")
+        delta = it["price"] - it["prev_price"]
+        pct = f"{delta * 100 / it['prev_price']:+.1f}".replace(".", ",")
+        lines.append(f"Antes: {clp(it['prev_price'])}  ({'-' if delta < 0 else '+'}{clp(abs(delta))} · {pct}%)")
     lines.append(it["url"])
     return "\n".join(lines)
 
 
 def diff(old, new):
-    """Marca cada producto nuevo o con cambio de precio con su tendencia y lo devuelve."""
+    """Marca cada producto con su tendencia (nuevo / bajó / subió) y devuelve solo los que hay que avisar."""
     changed = []
     for key, it in new.items():
         prev = old.get(key)
@@ -437,7 +454,8 @@ def diff(old, new):
         else:
             it["trend"] = prev.get("trend", "nuevo")  # sin cambio: conserva la última tendencia
             continue
-        changed.append(it)
+        if it["trend"] in NOTIFY_TRENDS:
+            changed.append(it)
     return changed
 
 
@@ -508,8 +526,100 @@ def load_env():
             os.environ.setdefault(key.strip(), value.strip().strip('"'))
 
 
+def setup_logging():
+    """Modo continuo: todo lo que se imprime va también a monitor.log (rotativo, 3 × 1 MB), con hora."""
+    logging.raiseExceptions = False  # un error al escribir el log no debe tumbar el monitor
+    log = logging.getLogger("monitor")
+    log.setLevel(logging.INFO)
+    fmt = logging.Formatter("%(asctime)s %(message)s", "%d/%m %H:%M:%S")
+    fh = logging.handlers.RotatingFileHandler(BASE / "monitor.log", maxBytes=1_000_000, backupCount=3, encoding="utf-8")
+    fh.setFormatter(fmt)
+    log.addHandler(fh)
+    if sys.__stdout__ is not None:  # sin consola (pythonw / tarea oculta) no hay a dónde mostrarlo
+        sh = logging.StreamHandler(sys.__stdout__)
+        sh.setFormatter(fmt)
+        log.addHandler(sh)
+
+    class Tee:
+        def __init__(self, level):
+            self.level = level
+
+        def write(self, text):
+            for line in text.splitlines():
+                if line.strip():
+                    log.log(self.level, line.rstrip())
+
+        def flush(self):
+            pass
+
+    sys.stdout, sys.stderr = Tee(logging.INFO), Tee(logging.WARNING)
+
+
+def cycle(skip=(), polite=False):
+    """Una pasada completa: scrapea, avisa por Telegram lo que cambió y guarda el estado.
+    Devuelve (resultados por tienda visitada, contador de fallos seguidos por tienda)."""
+    old = json.loads(STATE_FILE.read_text(encoding="utf-8")) if STATE_FILE.exists() else {}
+    new, stats = scrape(skip=skip, polite=polite)
+
+    # Salud: cuántos intentos seguidos lleva cada tienda sin resultados (las saltadas no cuentan)
+    health = old.get("_health", {})
+    alerts = []
+    for store, n in stats.items():
+        health[store] = 0 if n else health.get(store, 0) + 1
+        if health[store] == ZERO_RUNS_ALERT:
+            alerts.append(
+                f"⚠️ {store}: {ZERO_RUNS_ALERT} intentos seguidos sin resultados "
+                "(¿cambió el sitio o te bloquearon?)"
+            )
+
+    changes = diff(old, new)
+    if changes or alerts:
+        notify(alerts, changes)  # si falla (sin internet), no se guarda el estado y se reintenta
+    print(f"{len(new)} productos, {len(changes)} bajas de precio avisadas, {len(alerts)} alertas")
+
+    old.update(new)  # conserva lo último visto aunque una tienda falle esta vez
+    old["_health"] = health
+    STATE_FILE.write_text(json.dumps(old, ensure_ascii=False, indent=2), encoding="utf-8")
+    return stats, health
+
+
+def run_loop(pause_min=None, max_cycles=None):
+    """Corre ciclos para siempre con pausa aleatoria entre ellos. Una tienda que no devuelve nada
+    (posible bloqueo) se salta 1, 2, 4, 8... ciclos en vez de insistirle."""
+    pause = pause_min or float(os.environ.get("LOOP_PAUSE_MIN") or LOOP_PAUSE_MIN)
+    cooldown, n = {}, 0
+    print(f"Monitor continuo: ~{pause:g} min de pausa entre ciclos (±{LOOP_JITTER:.0%}). Ctrl+C para detener.")
+    while max_cycles is None or n < max_cycles:
+        n += 1
+        skip = {s for s, c in cooldown.items() if c > 0}
+        for s in skip:
+            cooldown[s] -= 1
+        print(f"=== ciclo {n}" + (f" · en pausa por posible bloqueo: {', '.join(sorted(skip))}" if skip else ""))
+        try:
+            stats, health = cycle(skip=skip, polite=True)
+            for store, found in stats.items():
+                if found:
+                    cooldown.pop(store, None)
+                else:
+                    cooldown[store] = min(2 ** (health.get(store, 1) - 1), MAX_COOLDOWN_CYCLES)
+        except Exception as e:  # sin internet, Telegram caído, etc.: se reintenta en el siguiente ciclo
+            print(f"[ERROR] el ciclo falló ({type(e).__name__}: {e}); se reintenta en el siguiente", file=sys.stderr)
+        if max_cycles is not None and n >= max_cycles:
+            break
+        wait = pause * 60 * random.uniform(1 - LOOP_JITTER, 1 + LOOP_JITTER)
+        print(f"próximo ciclo en {wait / 60:.1f} min")
+        time.sleep(wait)
+
+
 def main():
+    for stream in (sys.stdout, sys.stderr, sys.__stdout__, sys.__stderr__):
+        try:  # la consola de Windows (cp1252/cp850) no puede imprimir "←" ni emojis: no debe romper
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
     check = "--check" in sys.argv
+    loop = "--loop" in sys.argv
+    pause = next((float(a.split("=", 1)[1]) for a in sys.argv if a.startswith("--pause=")), None)
     load_env()
     missing = [k for k in ("TELEGRAM_TOKEN", "TELEGRAM_CHAT_ID") if not os.environ.get(k)]
     if missing and not check:  # avisar antes de scrapear, no 3 min después
@@ -518,34 +628,16 @@ def main():
             "(ver .env.example); en GitHub Actions van en los Secrets.\n"
             "Para probar sin Telegram: python scraper.py --check"
         )
-    old = json.loads(STATE_FILE.read_text(encoding="utf-8")) if STATE_FILE.exists() else {}
-    new, stats = scrape(debug=check)
-
     if check:
+        new, stats = scrape(debug=True)
         print("\nResumen por tienda:")
         for s, n in stats.items():
             print(f"  {s:<13} {n:>3} {'OK' if n else '← SIN RESULTADOS (mira debug/)'}")
-        return
-
-    # Salud: cuántas corridas seguidas lleva cada tienda sin resultados
-    health = old.get("_health", {})
-    alerts = []
-    for store, n in stats.items():
-        health[store] = 0 if n else health.get(store, 0) + 1
-        if health[store] == ZERO_RUNS_ALERT:
-            alerts.append(
-                f"⚠️ {store}: {ZERO_RUNS_ALERT} corridas seguidas sin resultados "
-                "(¿cambió el sitio o te bloquearon?)"
-            )
-
-    changes = diff(old, new)
-    if changes or alerts:
-        notify(alerts, changes)
-    print(f"{len(new)} productos, {len(changes)} cambios, {len(alerts)} alertas")
-
-    old.update(new)  # conserva lo último visto aunque una tienda falle esta vez
-    old["_health"] = health
-    STATE_FILE.write_text(json.dumps(old, ensure_ascii=False, indent=2), encoding="utf-8")
+    elif loop:
+        setup_logging()
+        run_loop(pause)
+    else:
+        cycle()
 
 
 if __name__ == "__main__":

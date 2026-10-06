@@ -1,11 +1,12 @@
 name: iphone-prices
 
 on:
-  schedule:
-    # Cada 5 min: el mínimo que permite GitHub Actions. En la práctica GitHub puede atrasar
-    # o saltarse corridas cuando está cargado, así que el intervalo real suele ser 5–15 min.
-    - cron: "*/5 * * * *"
-  workflow_dispatch: {}       # permite ejecutarlo a mano desde la pestaña Actions
+  # Programación desactivada: el monitor corre en un PC propio (iniciar_monitor.bat). GitHub Actions
+  # dejaba pasar 5–9 h entre corridas y, corriendo ambos, llegarían avisos duplicados con estados distintos.
+  # Para volver a usarlo en GitHub, descomenta esto:
+  # schedule:
+  #   - cron: "*/5 * * * *"
+  workflow_dispatch: {}       # se puede lanzar a mano desde la pestaña Actions
 
 permissions:
   contents: write             # necesario para commitear prices.json

@@ -2,3 +2,5 @@ debug/
 __pycache__/
 *.pyc
 .env
+monitor.log*
+monitor_reinicios.log
