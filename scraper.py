@@ -9,7 +9,6 @@ Uso:
     python scraper.py            # corrida normal (notifica y guarda estado)
     python scraper.py --check    # diagnóstico: no notifica ni guarda, imprime resultados
                                  # por tienda y guarda screenshot/HTML en debug/ si una URL no devuelve nada
-    EXTRA_STORES=1 python scraper.py   # incluye las tiendas opcionales (más ruido)
 """
 import io
 import json
@@ -51,12 +50,17 @@ STORES = {
         "https://www.mercadolibre.cl/tienda/apple",
         "https://www.mercadolibre.cl/tienda/samsung",
     ],
+    # Hites pagina de a 36; sz=100 trae todo en una página
+    "Hites": ["https://www.hites.com/busqueda?q={q}&sz=100&start=0"],
+    # AbcDin y La Polar ahora son el mismo sitio (abc.cl): sus dominios antiguos redirigen aquí
+    "ABC": ["https://www.abc.cl/Busqueda/?q={q}&lang=es_CL"],
 }
 # Tiendas cuyas páginas ya son solo de vendedores verificados: no se revisa la línea "Por X"
 OFFICIAL_ONLY = {"MercadoLibre"}
 # Vendedores externos que sí se aceptan por tienda, aunque no sean la tienda misma (en minúsculas)
 ALLOWED_SELLERS = {
     "Falabella": {"samsung"},  # tienda oficial de Samsung dentro de Falabella ("Por Samsung")
+    "Hites": {"samsung"},  # ídem en Hites ("Por: Samsung")
 }
 
 # Lider bloquea el acceso automatizado (verificación "Robot or human?" de PerimeterX): no se scrapea.
@@ -64,15 +68,6 @@ ALLOWED_SELLERS = {
 # Solo la tienda "Lider" (id 43), es decir, vendidos por Lider; "Lider Marketplace" (id 8642) son terceros.
 SOLOTODO_API = "https://publicapi.solotodo.com"
 SOLOTODO_STORES = {"Lider": 43}
-
-# Tiendas "parecidas" opcionales (más resultados de terceros / marketplace).
-OPTIONAL_STORES = {
-    "Hites": ["https://www.hites.com/search?q={q}"],
-    "AbcDin": ["https://www.abcdin.cl/search?q={q}"],
-    "LaPolar": ["https://www.lapolar.cl/search?q={q}"],
-}
-if os.environ.get("EXTRA_STORES") == "1":
-    STORES.update(OPTIONAL_STORES)
 
 SEARCHES = ["iphone 18 pro", "iphone 17 pro", "samsung s26 ultra"]  # "pro" trae también los "Max"
 
@@ -88,9 +83,11 @@ MODELS = [
 TITLE_RE = r"iphone|galaxy|s\s?26"
 EXCLUDE = re.compile(
     r"funda|case|carcasa|protector|mica|vidrio|l[aá]mina|cable|cargador|"
-    r"correa|magsafe|airtag|soporte|reacondicionado|usado|seminuevo|compatible|\bkit\b",
+    r"correa|magsafe|airtag|soporte|reacondicionado|usado|seminuevo|compatible|\bkit\b|\bcombo\b",
     re.I,
 )
+# Producto no disponible: no sirve avisar de su precio (solo cuenta si el texto está visible en la tarjeta)
+OUT_OF_STOCK_RE = re.compile(r"sin stock|agotado|no disponible", re.I)
 # Etiquetas que se muestran en el mensaje. E-SIM: versión sin bandeja SIM física (suele ser importada).
 ESIM_RE = re.compile(r"\be[\s-]?sim\b", re.I)
 IMPORT_RE = re.compile(r"importad|versi[oó]n usa|garant[ií]a (?:de )?\d+ meses", re.I)
@@ -110,6 +107,8 @@ IMG_SIZE = 320  # lado máximo (px) de la foto enviada a Telegram; más chico = 
 # Selector CSS del bloque de precio con tarjeta, dentro de la tarjeta del producto.
 CARD_ONLY = {
     "Paris": '[data-testid="paris-pod-price"]:has([data-testid*="cencosud-card"])',
+    # Hites muestra dos precios: el de la Tarjeta Hites (clase hites-price) y el "TODO MEDIO DE PAGO"
+    "Hites": ".price-item.hites-price",
 }
 # Ripley (sus datos internos): priceNumber = internet, masterPriceNumber = normal,
 # ripleyPriceNumber = solo con Tarjeta Ripley (se ignora).
@@ -215,14 +214,14 @@ JS_EXTRACT = """
 
 PRICE_RE = re.compile(r"\$\s*([\d]{1,3}(?:\.\d{3})+)")
 RANGE_RE = re.compile(r"(\$\s*[\d.]+)\s*-\s*\$\s*[\d.]+")
-BY_SELLER_RE = re.compile(r"^Por\s+(\S.{0,40})$", re.M)
+BY_SELLER_RE = re.compile(r"^Por:?\s+(\S.{0,40})$", re.M)  # "Por Falabella" / "Por: Hites"
 MORE_BTN = re.compile(r"ver m[aá]s|cargar m[aá]s|mostrar m[aá]s", re.I)
 
 
 def parse_item(raw, store=""):
     text = raw["text"]
     title = next((l.strip() for l in text.splitlines() if re.search(TITLE_RE, l, re.I)), "")
-    if not title or EXCLUDE.search(title):
+    if not title or EXCLUDE.search(title) or OUT_OF_STOCK_RE.search(text):
         return None
     model = next((name for name, rx in MODELS if rx.search(title)), None)
     if not model:
